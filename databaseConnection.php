@@ -13,11 +13,15 @@
  */
 class databaseConnection {
 
+	public function __construct() {
+		buildConnection();
+	}
+
 	public static function buildConnection(){
 		$host = 'localhost';
-		$username = 'USERNAME';
-		$password = "PASSWORT";
-		$database = 'DATABASENAME';
+		$username = 'root';
+		$password = "";
+		$database = 'tcbm';
 		$mysqliObject = new mysqli($host, $username, $password);
 			if (mysqli_connect_errno())
 			{
