@@ -1,7 +1,7 @@
 <?php
 $host = 'localhost';
 $username = 'root';
-$password = "";
+$password = '';
 $database = 'tcbm';
 $mysqliObject = new mysqli($host, $username, $password);
     if (mysqli_connect_errno())
