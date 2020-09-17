@@ -17,7 +17,7 @@ class databaseConnection {
 		buildConnection();
 	}
 
-	public static function buildConnection(){
+	public static function buildConnection(String $sQuery){
 		$host = 'localhost';
 		$username = 'root';
 		$password = "";
@@ -31,21 +31,22 @@ class databaseConnection {
 			$selected = $mysqliObject->select_db($database);
 			if (!$selected)
 			{
-					die('Can\'t open database "'.$database.'". Are you sure it exists? ');
+				$mysqliObject->close();
+				die('Can\'t open database "'.$database.'". Are you sure it exists? ');
 			}
 			// Choose UTF-8 encoding
 			$mysqliObject->query("SET NAMES 'utf8'");
 
-			// TODO: Here you need to insert your query...
-			$sql = "SELECT version() AS version";
-			$result = $mysqliObject->query($sql);
+			$result = $mysqliObject->query($sQuery);
 			if ($result)
 			{
-					$return = $result->fetch_assoc();
+				var_dump($result);
+				$return = $result->fetch_assoc();
 
-					// MySQL-Version aus dem Rückgabe-Array auslesen
-					echo "We are working with MySQL version {$return['version']}";
+				// MySQL-Version aus dem Rückgabe-Array auslesen
+				echo "We are working with MySQL version {$return['version']}";
 			} else {
+					$mysqliObject->close();
 					die('The following error occurred: "'.$sql.'"');
 			}
 			// Close the database connection
