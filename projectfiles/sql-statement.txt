@@ -1,0 +1,27 @@
+SELECT * FROM `tenniscourt` tc
+join timespan ts on true
+
+left join reservation res 
+	on res.tenniscourt_id = tc.tenniscourt_id and res.timespan_id = ts.timespan_id
+    and date = '2020-09-21'
+left join user us on us.user_id = res.user_id
+
+SELECT *
+FROM `tenniscourt` tc
+join timespan ts on true
+left join reservation res 
+	on res.tenniscourt_id = tc.tenniscourt_id and res.timespan_id = ts.timespan_id
+    and date = '2020-09-21'
+left join user us on us.user_id = res.user_id
+WHERE 1 AND tc.tenniscourt_id = 1
+ORDER BY ts.timefrom ASC
+
+SELECT us.firstname, us.lastname 
+FROM `tenniscourt` tc
+join timespan ts on true
+left join reservation res 
+	on res.tenniscourt_id = tc.tenniscourt_id and res.timespan_id = ts.timespan_id
+    and date = '2020-09-21'
+left join user us on us.user_id = res.user_id
+WHERE 1 AND tc.tenniscourt_id = 1
+ORDER BY ts.timefrom ASC
